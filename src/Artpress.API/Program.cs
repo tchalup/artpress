@@ -108,4 +108,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Seed the database
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<Artpress.Infrastructure.Data.Context.ArtpressDbContext>();
+    var passwordHasher = services.GetRequiredService<IPasswordHasher<User>>();
+    await Artpress.Infrastructure.Data.Seed.DataSeeder.SeedAsync(context, passwordHasher);
+}
+
 app.Run();
