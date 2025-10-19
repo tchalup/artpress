@@ -33,6 +33,7 @@ O projeto está dividido nas seguintes camadas:
 ### Pré-requisitos
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [EF Core Tools](https://docs.microsoft.com/en-us/ef/core/cli/dotnet) (`dotnet tool install --global dotnet-ef`)
 - [Docker](https://www.docker.com/products/docker-desktop) (opcional, para execução com contêineres)
 - Um servidor PostgreSQL em execução.
 
@@ -62,38 +63,17 @@ O projeto está dividido nas seguintes camadas:
 
 ### Executando com Docker
 
-1. **Clone o repositório.**
-
-2. **Crie um arquivo `docker-compose.yml` (opcional, para orquestração):**
-   ```yml
-   version: '3.8'
-   services:
-     postgres:
-       image: postgres:latest
-       environment:
-         POSTGRES_DB: Artpress
-         POSTGRES_USER: postgres
-         POSTGRES_PASSWORD: postgres
-       ports:
-         - "5432:5432"
-
-     artpress-api:
-       build:
-         context: .
-         dockerfile: src/Artpress.API/Dockerfile
-       ports:
-         - "8080:80"
-       depends_on:
-         - postgres
-       environment:
-         ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=Artpress;Username=postgres;Password=postgres"
+1. **Clone o repositório:**
+   ```bash
+   git clone <url-do-repositorio>
+   cd <nome-do-repositorio>
    ```
 
-3. **Suba os contêineres:**
+2. **Suba os contêineres:**
    ```bash
    docker-compose up -d --build
    ```
-   A API estará disponível em `http://localhost:8080`.
+   A API estará disponível em `http://localhost:8080`. A primeira execução pode levar alguns minutos para construir a imagem da API.
 
 ## Endpoints da API
 
