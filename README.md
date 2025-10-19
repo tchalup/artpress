@@ -50,16 +50,17 @@ O projeto está dividido nas seguintes camadas:
    - Altere a `DefaultConnection` para apontar para o seu banco de dados PostgreSQL.
 
 3. **Execute as Migrations:**
+   A partir da raiz do repositório, execute o seguinte comando para aplicar as migrações ao seu banco de dados:
    ```bash
-   cd src/Artpress.API
-   dotnet ef database update
+   dotnet ef database update --startup-project src/Artpress.API --project src/Artpress.Infrastructure
    ```
 
 4. **Execute a aplicação:**
+   A partir da raiz do repositório, execute o seguinte comando:
    ```bash
-   dotnet run
+   dotnet run --project src/Artpress.API
    ```
-   A API estará disponível em `https://localhost:5001` (ou a porta configurada).
+   A API estará disponível em `https://localhost:7013` e `http://localhost:5028`.
 
 ### Executando com Docker
 
